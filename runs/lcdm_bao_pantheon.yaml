@@ -1,0 +1,52 @@
+packages_path: packages
+debug: False
+
+theory:
+  cobaya_theories.linear_potential_theory.LinearPotentialTheory:
+    python_path: .
+
+likelihood:
+  bao.desi_2024_bao_all: null
+
+  likelihoods.sn_pantheonplus.PantheonPlus:
+    python_path: .
+    path: data/pantheonplus
+
+prior:
+  positive_kinetic: "lambda Omega_m, V0: 0 if (Omega_m + V0 < 1) else -np.inf"
+
+params:
+  h:
+    prior: {min: 0.55, max: 0.85}
+    ref: 0.68
+    proposal: 0.01
+
+  Omega_m:
+    prior: {min: 0.10, max: 0.50}
+    ref: 0.30
+    proposal: 0.01
+
+  V0:
+    prior: {min: 0.40, max: 0.95}
+    ref: 0.68
+    proposal: 0.02
+
+  V1:
+    value: 0.0
+
+  M_B:
+    prior: {min: -2.0, max: 2.0}
+    ref: 0.0
+    proposal: 0.02
+
+  rdrag:
+    prior: {min: 130.0, max: 160.0}
+    ref: 147.0
+    proposal: 1.0
+
+sampler:
+  mcmc:
+    Rminus1_stop: 0.01
+    max_tries: 100000
+
+output: outputs/lcdm_bao_pantheon

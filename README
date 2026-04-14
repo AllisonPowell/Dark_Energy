@@ -1,1 +1,12 @@
-
+1. Validate LCDM against official DESI DR2 BAO public chains.
+2. Validate LCDM + Pantheon+ and LCDM + DESY5.
+3. Turn on the custom scalar theory with V1 fixed to 0; verify it reproduces LCDM-like distances.
+4. Release V1 and run BAO only.
+5. Run BAO + Pantheon+.
+6. Run BAO + DESY5.
+7. Add compressed CMB.
+8. Compare:
+   - posterior P(V1 > 0)
+   - best-fit Delta chi2 vs LCDM
+   - reconstructed w_phi(z)
+   - whether the model stays in w >= -1

@@ -1,0 +1,29 @@
+packages_path: packages
+
+theory:
+  camb: null
+
+likelihood:
+  bao.desi_2024_bao_all: null
+
+params:
+  ombh2:
+    prior: {min: 0.020, max: 0.024}
+    ref: 0.0224
+    proposal: 0.0001
+
+  omch2:
+    prior: {min: 0.09, max: 0.14}
+    ref: 0.120
+    proposal: 0.001
+
+  H0:
+    prior: {min: 55, max: 85}
+    ref: 68.0
+    proposal: 0.5
+
+sampler:
+  mcmc:
+    Rminus1_stop: 0.01
+
+output: outputs/lcdm_bao

@@ -1,0 +1,115 @@
+theory:
+  cobaya_theories.linear_potential_theory.LinearPotentialTheory:
+    params:
+      h: null
+      Omega_m: null
+      V0: null
+      V1: null
+      M_B: null
+      rdrag: null
+    speed: -1
+    stop_at_error: false
+    version: null
+    python_path: .
+    input_params:
+    - h
+    - Omega_m
+    - V0
+    - V1
+    - M_B
+    - rdrag
+    output_params: []
+likelihood:
+  bao.desi_2024_bao_all:
+    measurements_file: bao_data/desi_2024_gaussian_bao_ALL_GCcomb_mean.txt
+    cov_file: bao_data/desi_2024_gaussian_bao_ALL_GCcomb_cov.txt
+    rs_fid: 1
+    aliases:
+    - BAO
+    speed: 2000
+    type: BAO
+    rs_rescale: null
+    prob_dist: null
+    invcov_file: null
+    redshift: null
+    observable_1: null
+    observable_2: null
+    observable_3: null
+    grid_file: null
+    stop_at_error: false
+    version: null
+    input_params:
+    - rdrag
+    output_params: []
+  likelihoods.sn_pantheonplus.PantheonPlus:
+    path: data/pantheonplus
+    type: []
+    speed: -1
+    stop_at_error: false
+    version: null
+    python_path: .
+    input_params: []
+    output_params: []
+prior:
+  positive_kinetic: 'lambda Omega_m, V0: 0 if (Omega_m + V0 < 1) else -np.inf'
+params:
+  h:
+    prior:
+      min: 0.55
+      max: 0.85
+    ref: 0.68
+    proposal: 0.01
+  Omega_m:
+    prior:
+      min: 0.1
+      max: 0.5
+    ref: 0.3
+    proposal: 0.01
+  V0:
+    prior:
+      min: 0.4
+      max: 0.95
+    ref: 0.69
+    proposal: 0.02
+  V1:
+    prior:
+      min: -3.0
+      max: 3.0
+    ref: 1.5
+    proposal: 0.05
+  M_B:
+    prior:
+      min: -2.0
+      max: 2.0
+    ref: 0.0
+    proposal: 0.02
+  rdrag:
+    prior:
+      min: 130.0
+      max: 160.0
+    ref: 147.0
+    proposal: 1.0
+  chi2__BAO:
+    latex: \chi^2_\mathrm{BAO}
+    derived: true
+sampler:
+  minimize:
+    method: bobyqa
+    ignore_prior: false
+    max_evals: 1e6d
+    best_of: 2
+    confidence_for_unbounded: 0.9999995
+    seed: null
+    override_scipy: null
+    override_bobyqa:
+      rhoend: 0.05
+    override_iminuit: null
+    covmat: null
+    covmat_params: null
+    version: null
+    supports_periodic_params: false
+    fallback_covmat_scale: 4
+packages_path: packages
+stop_at_error: true
+output: linear_potential_bao_pantheon_minimize
+version: 3.6.2

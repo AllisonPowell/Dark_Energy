@@ -1,0 +1,138 @@
+theory:
+  cobaya_theories.linear_potential_theory.LinearPotentialTheory:
+    params:
+      h: null
+      Omega_m: null
+      V0: null
+      V1: null
+      M_B: null
+      rdrag: null
+    speed: -1
+    stop_at_error: false
+    version: null
+    python_path: .
+    input_params:
+    - h
+    - Omega_m
+    - V0
+    - V1
+    - M_B
+    - rdrag
+    output_params: []
+likelihood:
+  bao.desi_2024_bao_all:
+    measurements_file: bao_data/desi_2024_gaussian_bao_ALL_GCcomb_mean.txt
+    cov_file: bao_data/desi_2024_gaussian_bao_ALL_GCcomb_cov.txt
+    rs_fid: 1
+    aliases:
+    - BAO
+    speed: 2000
+    type: BAO
+    rs_rescale: null
+    prob_dist: null
+    invcov_file: null
+    redshift: null
+    observable_1: null
+    observable_2: null
+    observable_3: null
+    grid_file: null
+    stop_at_error: false
+    version: null
+    input_params:
+    - rdrag
+    output_params: []
+  likelihoods.sn_desy_5.DESY5:
+    path: data/desy5
+    type: []
+    speed: -1
+    stop_at_error: false
+    version: null
+    python_path: .
+    input_params:
+    - Omega_m
+    - M_B
+    output_params: []
+params:
+  h:
+    prior:
+      min: 0.55
+      max: 0.85
+    ref: 0.7
+    proposal: 0.01
+  Omega_m:
+    prior:
+      min: 0.1
+      max: 0.5
+    ref: 0.3
+    proposal: 0.01
+  V0:
+    prior:
+      min: 0.4
+      max: 0.95
+    ref: 0.68
+    proposal: 0.02
+  V1:
+    prior:
+      min: -3.0
+      max: 3.0
+    ref: 1.5
+    proposal: 0.1
+  M_B:
+    prior:
+      min: -21
+      max: 2
+    ref: 0
+    proposal: 0.02
+  rdrag:
+    prior:
+      min: 130.0
+      max: 160.0
+    ref: 147.0
+    proposal: 1.0
+  chi2__BAO:
+    latex: \chi^2_\mathrm{BAO}
+    derived: true
+sampler:
+  mcmc:
+    sampler_type: mcmc
+    supports_periodic_params: true
+    burn_in: 0
+    max_tries: 100000
+    covmat: null
+    covmat_params: null
+    proposal_scale: 2.4
+    output_every: 60s
+    learn_every: 40d
+    temperature: 1
+    learn_proposal: true
+    learn_proposal_Rminus1_max: 2.0
+    learn_proposal_Rminus1_max_early: 30.0
+    learn_proposal_Rminus1_min: 0.0
+    max_samples: .inf
+    Rminus1_stop: 0.009
+    Rminus1_cl_stop: 0.2
+    Rminus1_cl_level: 0.95
+    Rminus1_single_split: 4
+    measure_speeds: true
+    oversample_power: 0.4
+    oversample_thin: true
+    drag: false
+    blocking:
+    - - 1
+      - - h
+        - Omega_m
+        - V0
+        - V1
+        - M_B
+        - rdrag
+    callback_function: null
+    callback_every: null
+    seed: null
+    check_every: null
+    oversample: null
+    drag_limits: null
+    fallback_covmat_scale: 4
+    version: 3.6.2
+packages_path: packages
+output: linear_potential_bao_desy5
+version: 3.6.2
