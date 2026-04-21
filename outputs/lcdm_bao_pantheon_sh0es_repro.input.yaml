@@ -3,9 +3,10 @@ theory:
     python_path: .
 likelihood:
   bao.desi_2024_bao_all: null
-  likelihoods.sn_pantheonplus.PantheonPlus:
+  likelihoods.sn_pantheonplus_sh0es_repro.PantheonPlusSH0ESRepro:
     python_path: .
     path: data/pantheonplus
+    z_min: 0.01
 prior:
   positive_kinetic: 'lambda Omega_m, V0: 0 if (Omega_m + V0 < 1) else -np.inf'
 params:
@@ -13,26 +14,22 @@ params:
     prior:
       min: 0.55
       max: 0.85
-    ref: 0.68
+    ref: 0.73
     proposal: 0.01
   Omega_m:
     prior:
       min: 0.1
       max: 0.5
-    ref: 0.3
+    ref: 0.29
     proposal: 0.01
   V0:
     prior:
       min: 0.4
       max: 0.95
-    ref: 0.69
+    ref: 0.66
     proposal: 0.02
   V1:
-    prior:
-      min: -3.0
-      max: 3.0
-    ref: 1.5
-    proposal: 0.05
+    value: 0.0
   M_B:
     prior:
       min: -2.0
@@ -50,5 +47,4 @@ sampler:
     Rminus1_stop: 0.01
     max_tries: 100000
 packages_path: packages
-stop_at_error: true
-output: linear_potential_bao_pantheon
+output: lcdm_bao_pantheon_sh0es_repro
